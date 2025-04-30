@@ -22,7 +22,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 const THRESHOLD = 100;
 
-const ExpensesDropdown = () => {
+const ExpensesList = () => {
   const { data, loading, error, refetch } = useQuery(GET_EXPENSES);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedExpense, setSelectedExpense] = React.useState<Expense | null>(
@@ -139,8 +139,7 @@ const ExpensesDropdown = () => {
                   <Box key={category} mb={6} justifyItems="center">
                     {categoryTotal > THRESHOLD && categoryTotal > 0 && (
                       <Text color="red.500" fontWeight="bold" mb={4}>
-                        You have spent a lot on {category} today! - Threshold £
-                        {THRESHOLD}
+                        You have spent a lot on {category} today!
                       </Text>
                     )}
 
@@ -167,7 +166,7 @@ const ExpensesDropdown = () => {
                         <CardBody>
                           <Text>Amount: £{expense.amount}</Text>
                           {/* <Text>
-                            Time:{" "}
+                            Time:
                             {new Date(expense.createdAt).toLocaleTimeString(
                               [],
                               {
@@ -198,4 +197,4 @@ const ExpensesDropdown = () => {
   );
 };
 
-export default ExpensesDropdown;
+export default ExpensesList;

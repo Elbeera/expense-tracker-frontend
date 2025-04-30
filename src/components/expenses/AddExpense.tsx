@@ -43,7 +43,6 @@ export default function AddExpenseModal() {
   const handleSubmit = async () => {
     if (!title || !amount || !category) return;
 
-    // const currentCreatedAt = new Date().toISOString();
     const currentCreatedAt = new Date(createdAt).toISOString();
 
     try {
@@ -74,7 +73,6 @@ export default function AddExpenseModal() {
     }
   };
 
-  // 🔥 Category options
   const categories = [
     "🍔 Food",
     "✈️ Transport",
@@ -119,7 +117,6 @@ export default function AddExpenseModal() {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
-              {/* ✅ New: Category Select */}
               <Select
                 placeholder="Select category"
                 value={category}

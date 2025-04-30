@@ -36,7 +36,7 @@ const ExpenseDetailModal: React.FC<ExpenseDetailModalProps> = ({
     try {
       await deleteExpense({
         variables: {
-          id: expenseId, // Send the expense ID to the mutation
+          id: expenseId,
         },
       });
       onClose();
@@ -68,7 +68,7 @@ const ExpenseDetailModal: React.FC<ExpenseDetailModalProps> = ({
               <Text fontWeight="bold">Date:</Text>
               <Text>{new Date(expense.createdAt).toLocaleDateString()}</Text>
             </Box>
-            <Box>
+            {/* <Box>
               <Text fontWeight="bold">Time:</Text>
               <Text>
                 {new Date(expense.createdAt).toLocaleTimeString([], {
@@ -77,7 +77,7 @@ const ExpenseDetailModal: React.FC<ExpenseDetailModalProps> = ({
                   hour12: true,
                 })}
               </Text>
-            </Box>
+            </Box> */}
           </VStack>
         </ModalBody>
 
@@ -85,7 +85,7 @@ const ExpenseDetailModal: React.FC<ExpenseDetailModalProps> = ({
           <WatchTowrButton
             colorScheme="red"
             onClick={(e) => {
-              e.stopPropagation(); // Prevent card click
+              e.stopPropagation();
               handleDeleteExpense(expense.id);
             }}
             mt={2}

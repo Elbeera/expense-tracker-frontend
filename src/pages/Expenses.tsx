@@ -6,18 +6,14 @@ import AddExpenseModal from "../components/expenses/AddExpense";
 import ExpensesDropdown from "../components/expenses/ExpensesDropdown";
 import NavBar from "../components/layout/NavBar";
 
-// Define the threshold
-// const THRESHOLD = 100;
-
 const Expenses = () => {
   const { data, loading, error } = useQuery(GET_EXPENSES);
 
-  // Group expenses by date and category
   const groupByDateAndCategory = (expenses: Expense[]) => {
     const groupedExpenses: Record<string, Record<string, Expense[]>> = {};
 
     expenses.forEach((expense) => {
-      const date = expense.createdAt.split("T")[0]; // Format: YYYY-MM-DD
+      const date = expense.createdAt.split("T")[0];
       const category = expense.category;
 
       if (!groupedExpenses[date]) {
@@ -33,7 +29,7 @@ const Expenses = () => {
 
     return groupedExpenses;
   };
-  // Function to calculate total spending for all days
+
   const calculateTotalForAllDays = () => {
     let total = 0;
     Object.keys(groupedExpenses).forEach((date) => {
@@ -48,12 +44,10 @@ const Expenses = () => {
     return total;
   };
 
-  // If loading, return loading state
   if (loading) {
     return <Spinner />;
   }
 
-  // Display error if fetching fails
   if (error) {
     return <Text>Error fetching expenses. Please try again later.</Text>;
   }

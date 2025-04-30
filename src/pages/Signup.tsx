@@ -12,14 +12,14 @@ import {
 import { signup } from "../services/api/auth";
 import { useNavigate } from "react-router-dom";
 import WatchTowrButton from "../components/common/WatchTowrButton";
-import Cookies from "js-cookie"; // Ensure this is imported
+import Cookies from "js-cookie";
 
 const Signup = () => {
   const [form, setForm] = useState({ email: "", username: "", password: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,7 +33,6 @@ const Signup = () => {
     try {
       const data = await signup(form);
 
-      // Store the token in a cookie (expires in 1 day)
       Cookies.set("token", data.token, { expires: 1 });
 
       setSuccess(true);

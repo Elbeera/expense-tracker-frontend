@@ -11,7 +11,6 @@ const Navbar = () => {
   const [userName, setUserName] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  // Define the structure of your decoded JWT
   interface DecodedToken {
     userId: number;
     email: string;
@@ -23,8 +22,8 @@ const Navbar = () => {
 
     if (token) {
       try {
-        const decoded = jwtDecode<DecodedToken>(token); // Decode JWT to get user info
-        setUserEmail(decoded.email); // Set user email from token
+        const decoded = jwtDecode<DecodedToken>(token);
+        setUserEmail(decoded.email);
         setUserName(decoded.name);
       } catch (error) {
         console.error("Error decoding token", error);
@@ -33,10 +32,7 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-    // Remove the token cookie
     Cookies.remove("token");
-
-    // Redirect to the login page
     navigate("/login");
   };
 

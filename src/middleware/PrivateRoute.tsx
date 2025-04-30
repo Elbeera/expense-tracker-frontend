@@ -1,11 +1,10 @@
-// src/components/PrivateRoute.tsx
 import { Navigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import { ReactElement } from "react";
 
 interface PrivateRouteProps {
   element: ReactElement;
-  path?: string; // path is now optional since we don't use it internally
+  path?: string;
 }
 
 const PrivateRoute = ({ element }: PrivateRouteProps) => {

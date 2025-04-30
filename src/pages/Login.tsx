@@ -11,27 +11,25 @@ import {
 import { useMutation } from "@apollo/client";
 import { LOGIN_MUTATION } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"; // Consider using js-cookie for better security
+import Cookies from "js-cookie";
 import WatchTowrButton from "../components/common/WatchTowrButton";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Added loading state
+  const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const [login] = useMutation(LOGIN_MUTATION, {
     onCompleted: (data) => {
-      // After successful login, store the token in cookies
-      Cookies.set("token", data.login.token, { expires: 1 }); // Cookie expires in 1 day
-      navigate("/expenses"); // Redirect to the /expenses page
+      Cookies.set("token", data.login.token, { expires: 1 });
+      navigate("/expenses");
     },
     onError: (err: unknown) => {
-      // Type the error as an instance of Error
       const errorMessage =
-        (err as Error).message || "An error occurred during login."; // Handle error
+        (err as Error).message || "An error occurred during login.";
       setError(errorMessage);
     },
   });
@@ -39,19 +37,17 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
 
     try {
-      // Perform the login mutation with email and password
       await login({ variables: { email, password } });
     } catch (err) {
       console.error("Login error:", err);
-      // Ensure the error is casted to 'Error' before accessing its message
       const errorMessage =
         (err as Error).message || "An error occurred during login.";
       setError(errorMessage);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
@@ -80,7 +76,7 @@ const Login = () => {
             type="submit"
             colorScheme="blue"
             width="100%"
-            isLoading={isLoading} // Show loading state during mutation
+            isLoading={isLoading}
           >
             Login
           </WatchTowrButton>
