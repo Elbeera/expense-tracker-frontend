@@ -1,4 +1,4 @@
-# 💰 Expense Tracker Frontend
+# Expense Tracker Frontend
 
 This is the frontend for an Expense Tracking application, built with **React**, **TypeScript**, and **Apollo Client**. It communicates with a GraphQL backend to support authentication, expense management, and user interactions in a responsive and modern UI.
 
